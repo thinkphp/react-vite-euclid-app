@@ -1,71 +1,71 @@
-# Calculator cmmdc – Algoritmul lui Euclid
+# GCD Calculator – Euclid’s Algorithm
 
-Aplicație web construită cu React și Vite, care calculează cel mai mare divizor comun (cmmdc) pentru două numere întregi. Rezultatul și pașii algoritmului se actualizează automat pe măsură ce valorile din câmpuri se schimbă.
+A web application built with React and Vite that calculates the greatest common divisor (GCD) of two integers. The result and the algorithm steps update automatically as the input values change.
 
-## Funcționalități
+## Features
 
-- Introducerea a două numere întregi, inclusiv valori negative.
-- Calcularea cmmdc-ului folosind algoritmul lui Euclid.
-- Afișarea împărțirilor succesive în forma `a = q · b + r`.
-- Validarea câmpurilor și afișarea mesajelor de eroare.
-- Actualizarea titlului filei browserului cu rezultatul curent.
+- Enter two integers, including negative values.
+- Calculate the GCD using Euclid’s algorithm.
+- Display successive divisions in the form `a = q · b + r`.
+- Validate inputs and display error messages.
+- Update the browser tab title with the current result.
 
-## Tehnologii
+## Technologies
 
 - React 19
 - Vite 8
 - JavaScript (ES modules)
-- Hook-urile React `useState` și `useEffect`
+- React hooks `useState` and `useEffect`
 
-## Cum funcționează `useState` și `useEffect`
+## How `useState` and `useEffect` work
 
-Componenta principală a aplicației este `src/Euclid.jsx`. Ea păstrează în stare valorile câmpurilor ca șiruri de caractere, pentru ca inputurile controlate să poată reflecta inclusiv editarea în curs:
+The main component is `src/Euclid.jsx`. It stores the input values as strings so the controlled inputs can reflect the user’s current edits:
 
-- `a` și `b` – valorile introduse de utilizator; se schimbă prin `setA` și `setB`.
-- `result` – cmmdc-ul calculat sau `null` dacă valorile nu sunt valide.
-- `steps` – lista împărțirilor efectuate de algoritm.
-- `error` – mesajul de validare sau șirul gol dacă nu există eroare.
+- `a` and `b` — the values entered by the user, updated with `setA` and `setB`.
+- `result` — the calculated GCD, or `null` when the inputs are invalid.
+- `steps` — the list of divisions performed by the algorithm.
+- `error` — the validation message, or an empty string when there is no error.
 
-Primul `useEffect` depinde de `[a, b]`. Când se schimbă oricare dintre valori, convertește intrările în numere și verifică dacă ambele câmpuri sunt completate, dacă valorile sunt numere întregi sigure și dacă nu sunt ambele zero. La o intrare validă, calculează cmmdc-ul pentru valorile absolute și salvează rezultatul și pașii în stare. În caz de eroare, golește rezultatul și pașii.
+The first `useEffect` depends on `[a, b]`. Whenever either value changes, it converts the inputs to numbers and checks that both fields are filled in, that both values are safe integers, and that they are not both zero. For valid inputs, it calculates the GCD of their absolute values and stores the result and steps in state. For invalid inputs, it clears the result and steps.
 
-Funcția `euclid` repetă relația `a = q · b + r`, apoi înlocuiește perechea `(a, b)` cu `(b, r)` până când restul devine zero. Ultima valoare nenulă este cmmdc-ul. Dacă `b` este zero de la început, lista de pași este goală, iar interfața explică faptul că cmmdc-ul este `a`.
+The `euclid` function repeatedly applies `a = q · b + r`, then replaces the pair `(a, b)` with `(b, r)` until the remainder is zero. The last nonzero value is the GCD. If `b` is zero from the start, there are no division steps, and the interface explains that the GCD is `a`.
 
-Al doilea `useEffect` depinde de `[result]` și actualizează `document.title`: titlul devine `cmmdc = …` după un calcul valid și revine la `Euclid` când rezultatul este invalid sau incomplet.
+The second `useEffect` depends on `[result]` and updates `document.title`. After a valid calculation, the title becomes `GCD = …`; when the result is invalid or incomplete, it returns to `Euclid`.
 
-## Validări
+## Input validation
 
-- Câmpurile goale afișează „Introdu ambele numere.”
-- Valorile care nu sunt întregi sigure afișează „Folosește doar numere întregi.”
-- Perechea `(0, 0)` afișează „cmmdc(0, 0) nu este definit.”
-- Numerele negative sunt acceptate; algoritmul este aplicat valorilor lor absolute.
+- Empty fields display “Enter both numbers.”
+- Values that are not safe integers display “Use integers only.”
+- The pair `(0, 0)` displays “GCD(0, 0) is undefined.”
+- Negative numbers are accepted; the algorithm uses their absolute values.
 
-## Rulare locală
+## Run locally
 
-Ai nevoie de Node.js și npm instalate.
+You need Node.js and npm installed.
 
 ```bash
 npm install
 npm run dev
 ```
 
-Vite va afișa în terminal adresa locală la care rulează aplicația.
+Vite will print the local address where the application is running.
 
-## Comenzi disponibile
+## Available commands
 
-| Comandă | Descriere |
+| Command | Description |
 | --- | --- |
-| `npm run dev` | Pornește serverul de dezvoltare Vite. |
-| `npm run build` | Construiește versiunea pentru producție în `dist/`. |
-| `npm run preview` | Servește local versiunea construită. |
-| `npm run lint` | Rulează ESLint asupra proiectului. |
-| `npm run deploy` | Construiește aplicația și publică directorul `dist/` cu `gh-pages`. |
+| `npm run dev` | Starts the Vite development server. |
+| `npm run build` | Builds the production version into `dist/`. |
+| `npm run preview` | Serves the production build locally. |
+| `npm run lint` | Runs ESLint on the project. |
+| `npm run deploy` | Builds the app and publishes `dist/` with `gh-pages`. |
 
-## Structura relevantă
+## Relevant project structure
 
 ```text
 src/
-├── App.jsx       # Integrează componenta Euclid
-├── Euclid.jsx    # Interfața, starea, validarea și algoritmul
-├── index.css     # Stiluri globale
-└── main.jsx      # Punctul de intrare React
+├── App.jsx       # Integrates the Euclid component
+├── Euclid.jsx    # UI, state, validation, and algorithm
+├── index.css     # Global styles
+└── main.jsx      # React entry point
 ```
