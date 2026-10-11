@@ -74,13 +74,33 @@ h2 {
 }
 
 h1 {
-  font-size: 56px;
-  letter-spacing: -1.68px;
-  margin: 32px 0;
-  @media (max-width: 1024px) {
-    font-size: 36px;
-    margin: 20px 0;
-  }
+  font-size: clamp(2rem, 8vw, 3.25rem);
+  line-height: 1.08;
+  letter-spacing: -0.055em;
+  margin: 0;
+}
+
+.app-header {
+  margin: 12px 0 32px;
+  padding: 28px 20px 24px;
+  border-bottom: 1px solid var(--border);
+  text-align: center;
+}
+
+.app-header__eyebrow {
+  display: inline-block;
+  margin-bottom: 12px;
+  color: var(--accent);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+}
+
+.app-header p {
+  max-width: 34ch;
+  margin: 12px auto 0;
+  color: var(--text);
+  font-size: 1rem;
 }
 h2 {
   font-size: 24px;

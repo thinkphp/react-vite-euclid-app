@@ -80,7 +80,11 @@ const Euclid = () => {
 
   return (
     <div style={styles.container}>
-      <h1>Algoritmul lui Euclid</h1>
+      <header className="app-header">
+        <span className="app-header__eyebrow">CALCULATOR MATEMATIC</span>
+        <h1>Algoritmul lui Euclid</h1>
+        <p>Găsește cmmdc-ul și urmărește fiecare pas al calculului.</p>
+      </header>
 
       <div style={styles.inputs}>
         <label style={styles.label}>
